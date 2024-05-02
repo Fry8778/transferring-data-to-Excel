@@ -1,5 +1,5 @@
 function varInfoExportToExcel() {     
-    const productCards = document.querySelectorAll('.sf-product-card__block');
+    const productCards = document.querySelectorAll('.sf-product-card');
     console.log("productCards:", productCards);
 
     // Фильтрация товаров по наличию слова "кава" в тексте ссылки
@@ -24,17 +24,17 @@ function varInfoExportToExcel() {
                     'Старая цена товара(цена без скидки)']];
 
     filteredProducts.forEach((productCard) => {
-        const productNameElement = productCard.querySelector('.sf-product-card__title');
-        const priceElement = productCard.querySelector('.sf-price sf-product-card__price');
-        const specialPriceElement = productCard.querySelector('.sf-price sf-product-card.sf-price__special > ins');
-        const weightElement = productCard.querySelector('.price-block.sf-product-card__quantity > p');
-        const salePriceElement = productCard.querySelector('.sf-price sf-product-card__price.sf-price__old > del');
+        const productNameElement = productCard.querySelector('.sf-product-card__block > a.sf-link sf-product-card__link sf-product-card__title-wrapper > p.sf-product-card__title');
+        const priceElement = productCard.querySelector('.price-block.sf-price__regular');
+        const specialPriceElement = productCard.querySelector('.price-block.sf-price__special');
+        const weightElement = productCard.querySelector('.price-block.sf-product-card__quantity');
+        const salePriceElement = productCard.querySelector('.price-block.sf-price__old');
 
             if (productNameElement &&
                 priceElement &&
+                specialPriceElement &&
                 weightElement &&
-                salePriceElement &&
-                specialPriceElement) {
+                salePriceElement) {
             const productName = productNameElement.innerText.trim() || '';
             const price = priceElement.innerText.trim() || '';
             const specialPrice = specialPriceElement.innerText.trim() || '';

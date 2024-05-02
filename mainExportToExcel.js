@@ -233,12 +233,12 @@
 
 function mainExportToExcel() {     
     const productCards = document.querySelectorAll('.product-card__body');
-    // console.log("productCards:", productCards);
+    console.log("productCards:", productCards);
 
     // Фильтрация товаров по наличию слова "кава" в тексте ссылки
     const filteredProducts = Array.from(productCards).filter(productCard => {
         const productNameElement = productCard.querySelector('.product-card__title');      
-        // console.log("productNameElement:", productNameElement);
+        console.log("productNameElement:", productNameElement);
         const productName = productNameElement ? productNameElement.innerText.toLowerCase() : ''; // Проверка существования элемента
             return  productName.includes('кава') ||
                     productName.includes('кава мелена')  ||
