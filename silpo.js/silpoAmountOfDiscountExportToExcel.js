@@ -1,4 +1,4 @@
-function amountOfDiscountExportToExcel() {     
+function silpoAmountOfDiscountExportToExcel() {     
     const productCards = document.querySelectorAll('.product-card__body');
   
     // Фильтрация товаров по наличию слова "кава" в тексте ссылки
@@ -46,4 +46,4 @@ function amountOfDiscountExportToExcel() {
     XLSX.writeFile(wb, "data.xlsx");
 }
 
-export { amountOfDiscountExportToExcel };
+export { silpoAmountOfDiscountExportToExcel };

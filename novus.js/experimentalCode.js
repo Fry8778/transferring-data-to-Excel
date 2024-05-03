@@ -1,5 +1,6 @@
-function novusInfoExportToExcel() {     
-    const productCards = document.querySelectorAll('.sf-product-card__block');
+// Код передбачений для пошуку кави на загальній сторінці  
+function experimentalCode() {     
+    const productCards = document.querySelectorAll('.sf-product-card');
     console.log("productCards:", productCards);
 
     // Фильтрация товаров по наличию слова "кава" в тексте ссылки
@@ -25,10 +26,15 @@ function novusInfoExportToExcel() {
 
     filteredProducts.forEach((productCard) => {
         const productNameElement = productCard.querySelector('.sf-product-card__title');
-        const priceElement = productCard.querySelector('.sf-product-card__block.sf-price__regular');
-        const specialPriceElement = productCard.querySelector('.ft-line-through.ft-text-black-87.ft-typo-14-regular.xl\\:ft-typo');
+        // const priceElement = productCard.querySelector('sf-price > span.sf-price__regular');
+        // const priceElement = productCard.querySelector('.sf-product-card__price > span.sf-price__regular');
+        // const priceElement = productCard.querySelector('.price-block > span.sf-price__regular');
+        // const priceElement = productCard.querySelector('.sf-price__regular');
+        const priceElement = productCard.querySelector('.sf-price.sf-product-card__price > span');
+
+        const specialPriceElement = productCard.querySelector('.sf-price.sf-product-card__price.sf-price__special');
         const weightElement = productCard.querySelector('.sf-product-card__quantity');
-        const salePriceElement = productCard.querySelector('.product-card-price__sale');
+        const salePriceElement = productCard.querySelector('.sf-price.sf-product-card__price.sf-price__old');
 
         console.log("productNameElement:", productNameElement);                 
         console.log("priceElement:", priceElement);       
@@ -66,7 +72,4 @@ function novusInfoExportToExcel() {
     XLSX.writeFile(wb, "data.xlsx");
 }
 
-export { novusInfoExportToExcel };
-
-
-
+export { experimentalCode };

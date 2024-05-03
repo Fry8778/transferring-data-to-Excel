@@ -1,4 +1,4 @@
-function varInfoExportToExcel() {     
+function varusInfoExportToExcel() {     
     const productCards = document.querySelectorAll('.sf-product-card');
     console.log("productCards:", productCards);
 
@@ -60,4 +60,4 @@ function varInfoExportToExcel() {
     XLSX.writeFile(wb, "data.xlsx");
 }
 
-export { varInfoExportToExcel };
+export { varusInfoExportToExcel };

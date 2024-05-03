@@ -1,4 +1,4 @@
-function novusInfoExportToExcel() {     
+function novusAmountOfDiscountExportToExcel() {     
     const productCards = document.querySelectorAll('.base-is-link.base-card.catalog-products__item');
     console.log("productCards:", productCards);
 
@@ -19,49 +19,33 @@ function novusInfoExportToExcel() {
         );
     });
 
-    const data = [['Название товара',
-                   'Цена товара(текущая цена)',
-                   'Цена товара со скидкой(текущая цена)',
-                   'Вес товара',
+    const data = [['Название товара',             
+                   'Цена товара со скидкой(текущая цена)',             
                    'Старая цена товара(цена без скидки)']];
 
+
     filteredProducts.forEach((productCard) => {
-        const productNameElements = productCard.querySelectorAll('.base-card__label > span');
-        const priceElement = productCard.querySelector('.product-card-price__cost > p.product-card-price__current');        
-        const specialPriceElement = productCard.querySelector('.product-card-price__cost > p.product-card-price__current.price-red');
-        const weightElement = productCard.querySelector('p.base-card__capacity');
+        const productNameElements = productCard.querySelectorAll('.base-card__label > span');           
+        const specialPriceElement = productCard.querySelector('.product-card-price__cost > p.product-card-price__current.price-red');       
         const salePriceElement = productCard.querySelector('.product-card-price__cost > p.product-card-price__old');
-
-
         
 
-        console.log("productNameElements:", productNameElements);                 
-        console.log("priceElement:", priceElement);       
+        console.log("productNameElements:", productNameElements);             
         console.log("specialPriceElement:", specialPriceElement);
-        console.log("weightElement:", weightElement);
         console.log("salePriceElement:", salePriceElement);   
-        
-        
+            
 
-
-
-
-        if (productNameElements.length > 0 &&
-            priceElement &&
-            specialPriceElement &&
-            weightElement &&
-            salePriceElement) {
-            const productName = Array.from(productNameElements).map(element => element.innerText.trim() || '').join(' ');
-            const price = priceElement.innerText.trim() || '';
-            const specialPrice = specialPriceElement.innerText.trim() || '';
-            const weight = weightElement.innerText.trim() || '';
+        if (productNameElements.length > 0 &&          
+            specialPriceElement &&           
+             salePriceElement) {
+            const productName = Array.from(productNameElements).map(element => element.innerText.trim() || '').join(' ');         
+            const specialPrice = specialPriceElement.innerText.trim() || '';       
             const salePrice = salePriceElement.innerText.trim() || '';
 
-            data.push([productName,
-                       price, 
-                       specialPrice,
-                       weight,
-                       salePrice]);
+            data.push([productName,                 
+                       specialPrice,                  
+                       salePrice
+                    ]);
         }
     });
 
@@ -76,4 +60,4 @@ function novusInfoExportToExcel() {
     XLSX.writeFile(wb, "data.xlsx");
 }
 
-export { novusInfoExportToExcel };
+export { novusAmountOfDiscountExportToExcel };

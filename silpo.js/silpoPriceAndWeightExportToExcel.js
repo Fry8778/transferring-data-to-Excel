@@ -1,4 +1,4 @@
-function priceAndWeightExportToExcel() {     
+function silpoPriceAndWeightExportToExcel() {     
     const productCards = document.querySelectorAll('.product-card__body');    
 
     // Фильтрация товаров по наличию слова "кава" в тексте ссылки
@@ -47,7 +47,7 @@ function priceAndWeightExportToExcel() {
     XLSX.writeFile(wb, "data.xlsx");
 }
 
-export { priceAndWeightExportToExcel };
+export { silpoPriceAndWeightExportToExcel };
 
 
 
