@@ -19,7 +19,7 @@ function novusExportToExcel() {
     const data = [[ 'Название товара',            
                     'Цена товара(текущая цена)', 
                     'Вес товара',     
-                    'Цена товара с учетом скидки',
+                    'Цена товара с учетом скидки(текущая цена)',
                     'Старая цена товара(цена без скидки)',
                     'Процент скидки(%)']];
 
@@ -36,23 +36,23 @@ function novusExportToExcel() {
         console.log("productNameElements:", productNameElements);        
         console.log("priceElement:", priceElement);
         console.log("weightElement:", weightElement);
-        console.log("discountPercentageElement:", discountPercentageElement);
         
         console.log("specialPriceElement:", specialPriceElement);        
         console.log("salePriceElement:", salePriceElement); 
+        console.log("discountPercentageElement:", discountPercentageElement);
 
         if (!specialPriceElement || !salePriceElement) {
             // Если элементов .current.price-red и .price__old нет внутри .product-card-price__cost,
             // значит, товар не имеет скидки
             const price = priceElement ? priceElement.innerText.trim() || '' : '';  
             const weight = weightElement ? weightElement.innerText.trim() || '' : '';  
-            const discountPercentage = discountPercentageElement ? discountPercentageElement.innerText.trim() || '' : '';  
             const productName = Array
-                .from(productNameElements)
-                .map(element => element.innerText.trim() || '')
-                .join(' ');     
+            .from(productNameElements)
+            .map(element => element.innerText.trim() || '')
+            .join(' ');     
             const specialPrice = '';  // Пустое значение для товаров без скидки
             const salePrice = '';     // Пустое значение для товаров без скидки
+            const discountPercentage = '';     // Пустое значение для товаров без скидки
             data.push([ productName,    
                         price,
                         weight,
@@ -60,7 +60,7 @@ function novusExportToExcel() {
                         salePrice,
                         discountPercentage]);
         } else {
-            // Если элементы .current.price-red и .price__old найдены, значит, товар имеет скидку
+            // Если элементы .current.price-red, .price__old, stickers__promo найдены, значит, товар имеет скидку
             const productName = Array
                 .from(productNameElements)
                 .map(element => element.innerText.trim() || '')

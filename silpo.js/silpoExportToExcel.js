@@ -28,17 +28,17 @@ function silpoExportToExcel() {
 
         // Проверяем наличие скидки
         const specialPriceElement = productCard.querySelector('.ft-line-through.ft-text-black-87.ft-typo-14-regular.xl\\:ft-typo');       
-        const salePriceElement = productCard.querySelector('.product-card-price__sale');
+        const discountPercentageElement = productCard.querySelector('.product-card-price__sale');
 
         console.log("productNameElements:", productNameElements);        
         console.log("priceElement:", priceElement);
         console.log("weightElement:", weightElement);
         
         console.log("specialPriceElement:", specialPriceElement);        
-        console.log("salePriceElement:", salePriceElement); 
+        console.log("discountPercentageElement:", discountPercentageElement); 
 
-        if (!specialPriceElement || !salePriceElement) {
-            // Если элементов .price__discount и .price__old нет внутри .product_discount,
+        if (!specialPriceElement || !discountPercentageElement) {
+            // Если элементов .ft-line-through.ft-text-black-87.ft-typo-14-regular.xl\\:ft-typo и .product-card-price__sale нет внутри .product-card-price__old,
             // значит, товар не имеет скидки
             const price = priceElement ? priceElement.innerText.trim() || '' : '';  
             const weight = weightElement ? weightElement.innerText.trim() || '' : '';  
@@ -47,14 +47,14 @@ function silpoExportToExcel() {
                 .map(element => element.innerText.trim() || '')
                 .join(' ');     
             const specialPrice = '';  // Пустое значение для товаров без скидки
-            const salePrice = '';     // Пустое значение для товаров без скидки
+            const discountPercentage = '';     // Пустое значение для товаров без скидки
             data.push([ productName,    
                         price,
                         weight,
                         specialPrice,                     
-                        salePrice]);
+                        discountPercentage]);
         } else {
-            // Если элементы .price__discount и .price__old найдены, значит, товар имеет скидку
+            // Если элементы .ft-line-through.ft-text-black-87.ft-typo-14-regular.xl\\:ft-typo и .product-card-price__sale найдены, значит, товар имеет скидку
             const productName = Array
                 .from(productNameElements)
                 .map(element => element.innerText.trim() || '')
@@ -62,12 +62,12 @@ function silpoExportToExcel() {
             const price = priceElement ? priceElement.innerText.trim() || '' : '';  
             const weight = weightElement ? weightElement.innerText.trim() || '' : '';  
             const specialPrice = specialPriceElement ? specialPriceElement.innerText.trim() || '' : '';               
-            const salePrice = salePriceElement ? salePriceElement.innerText.trim() || '' : '';             
+            const discountPercentage = discountPercentageElement ? discountPercentageElement.innerText.trim() || '' : '';             
             data.push([ productName,    
                         price,
                         weight,
                         specialPrice,                     
-                        salePrice]);
+                        discountPercentage]);
         }
     });
 
