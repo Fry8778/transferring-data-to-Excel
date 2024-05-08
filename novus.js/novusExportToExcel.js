@@ -42,7 +42,7 @@ function novusExportToExcel() {
         console.log("salePriceElement:", salePriceElement); 
 
         if (!specialPriceElement || !salePriceElement) {
-            // Если элементов .price__discount и .price__old нет внутри .product_discount,
+            // Если элементов .current.price-red и .price__old нет внутри .product-card-price__cost,
             // значит, товар не имеет скидки
             const price = priceElement ? priceElement.innerText.trim() || '' : '';  
             const weight = weightElement ? weightElement.innerText.trim() || '' : '';  
@@ -60,12 +60,13 @@ function novusExportToExcel() {
                         salePrice,
                         discountPercentage]);
         } else {
-            // Если элементы .price__discount и .price__old найдены, значит, товар имеет скидку
+            // Если элементы .current.price-red и .price__old найдены, значит, товар имеет скидку
             const productName = Array
                 .from(productNameElements)
                 .map(element => element.innerText.trim() || '')
-                .join(' ');     
-            const price = priceElement ? priceElement.innerText.trim() || '' : '';  
+                .join(' ');
+                // Если товар имеет скидку, то при формировании массива данных оставляем ячейку с 'Цена товара(текущая цена)' пустой
+            const price = '';  
             const weight = weightElement ? weightElement.innerText.trim() || '' : '';  
             const specialPrice = specialPriceElement ? specialPriceElement.innerText.trim() || '' : '';               
             const salePrice = salePriceElement ? salePriceElement.innerText.trim() || '' : '';             
