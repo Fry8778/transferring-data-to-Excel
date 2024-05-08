@@ -1,10 +1,10 @@
-function novusPriceAndWeightExportToExcel() {     
-    const productCards = document.querySelectorAll('.base-is-link.base-card.catalog-products__item');
+function tavriavPriceAndWeightExportToExcel() {     
+    const productCards = document.querySelectorAll('.products__item');
     console.log("productCards:", productCards);
 
     // Фильтрация товаров по наличию слова "кава" в тексте ссылки
     const filteredProducts = Array.from(productCards).filter(productCard => {
-        const productNameElements = productCard.querySelectorAll('.base-card__label > span');
+        const productNameElements = productCard.querySelectorAll('.product__title');
         const productNames = Array.from(productNameElements).map(element => element.innerText.toLowerCase());
         console.log("productNameElements:", productNameElements);
         return  productNames.some(name => 
@@ -20,30 +20,24 @@ function novusPriceAndWeightExportToExcel() {
     });
 
     const data = [['Название товара',
-                   'Цена товара(текущая цена)',                
-                   'Вес товара']];
+                   'Цена товара(текущая цена)']];
 
     filteredProducts.forEach((productCard) => {
-        const productNameElements = productCard.querySelectorAll('.base-card__label > span');
-        const priceElement = productCard.querySelector('.product-card-price__cost > p.product-card-price__current');      
-        const weightElement = productCard.querySelector('.base-card > p.base-card__capacity');
-        
+        const productNameElements = productCard.querySelectorAll('.product__title');
+        const priceElement = productCard.querySelector('.product__price > b');     
+             
 
         console.log("productNameElements:", productNameElements);                 
-        console.log("priceElement:", priceElement);     
-        console.log("weightElement:", weightElement);      
-               
+        console.log("priceElement:", priceElement); 
+                          
 
         if (productNameElements.length > 0 &&
-            priceElement &&          
-            weightElement) {
+            priceElement) {
             const productName = Array.from(productNameElements).map(element => element.innerText.trim() || '').join(' ');
-            const price = priceElement.innerText.trim() || '';           
-            const weight = weightElement.innerText.trim() || '';           
-
+            const price = priceElement.innerText.trim() || '';          
+                    
             data.push([productName,
-                       price,
-                       weight]);
+                       price]);
         }
     });
 
@@ -58,7 +52,4 @@ function novusPriceAndWeightExportToExcel() {
     XLSX.writeFile(wb, "data.xlsx");
 }
 
-export { novusPriceAndWeightExportToExcel };
-
-
-
+export { tavriavPriceAndWeightExportToExcel };

@@ -41,8 +41,8 @@ function novusExportToExcel() {
         console.log("salePriceElement:", salePriceElement); 
         console.log("discountPercentageElement:", discountPercentageElement);
 
-        if (!specialPriceElement || !salePriceElement) {
-            // Если элементов .current.price-red и .price__old нет внутри .product-card-price__cost,
+        if (!specialPriceElement || !salePriceElement || !discountPercentageElement) {
+            // Если элементов .current.price-red, .price__old, .stickers__promo нет внутри .product-card-price__cost,
             // значит, товар не имеет скидки
             const price = priceElement ? priceElement.innerText.trim() || '' : '';  
             const weight = weightElement ? weightElement.innerText.trim() || '' : '';  
