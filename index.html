@@ -17,48 +17,54 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
 
+    <!-- Silpo -->
     <script type="module">
-         import { silpoExportToExcel } from './silpo.js/silpoExportToExcel.js';
-         import { silpoAmountOfDiscountExportToExcel } from './silpo.js/silpoAmountOfDiscountExportToExcel.js';
-         import { silpoPriceAndWeightExportToExcel } from './silpo.js/silpoPriceAndWeightExportToExcel.js';
+        import { silpoExportToExcel } from './silpo.js/silpoExportToExcel.js';
+        import { silpoAmountOfDiscountExportToExcel } from './silpo.js/silpoAmountOfDiscountExportToExcel.js';
+        import { silpoPriceAndWeightExportToExcel } from './silpo.js/silpoPriceAndWeightExportToExcel.js';
+        document.getElementById('exportButton').addEventListener('click', silpoExportToExcel);
+        document.getElementById('exportButton').addEventListener('click', silpoAmountOfDiscountExportToExcel);
+        document.getElementById('exportButton').addEventListener('click', silpoPriceAndWeightExportToExcel);
+    </script>
 
-         import { novusExportToExcel } from './novus.js/novusExportToExcel.js';
-         import { novusAmountOfDiscountExportToExcel } from './novus.js/novusAmountOfDiscountExportToExcel.js';
-         import { novusPriceAndWeightExportToExcel } from './novus.js/novusPriceAndWeightExportToExcel.js';
+    <!-- Novus -->
+    <script type="module">
+        import { novusExportToExcel } from './novus.js/novusExportToExcel.js';
+        import { novusAmountOfDiscountExportToExcel } from './novus.js/novusAmountOfDiscountExportToExcel.js';
+        import { novusPriceAndWeightExportToExcel } from './novus.js/novusPriceAndWeightExportToExcel.js';
+        document.getElementById('exportButton').addEventListener('click', novusExportToExcel);
+        document.getElementById('exportButton').addEventListener('click', novusAmountOfDiscountExportToExcel);
+        document.getElementById('exportButton').addEventListener('click', novusPriceAndWeightExportToExcel);
+    </script>
 
-         import { varusExportToExcel } from './varus.js/varusExportToExcel.js';
-         import { varusAmountOfDiscountExportToExcel } from './varus.js/varusAmountOfDiscountExportToExcel.js';
-         import { varusPriceAndWeightExportToExcel } from './varus.js/varusPriceAndWeightExportToExcel.js';
+    <!-- varus -->
+    <script type="module">
+        import { varusExportToExcel } from './varus.js/varusExportToExcel.js';
+        import { varusAmountOfDiscountExportToExcel } from './varus.js/varusAmountOfDiscountExportToExcel.js';
+        import { varusPriceAndWeightExportToExcel } from './varus.js/varusPriceAndWeightExportToExcel.js';
+        document.getElementById('exportButton').addEventListener('click', varusExportToExcel);
+        document.getElementById('exportButton').addEventListener('click', varusAmountOfDiscountExportToExcel);
+        document.getElementById('exportButton').addEventListener('click', varusPriceAndWeightExportToExcel);
+    </script>
 
-         import { tavriavExportToExcel } from './tavriav.js/tavriavExportToExcel.js';
-         import { tavriavAmountOfDiscountExportToExcel } from './tavriav.js/tavriavAmountOfDiscountExportToExcel.js';
-         import { tavriavPriceAndWeightExportToExcel } from './tavriav.js/tavriavPriceAndWeightExportToExcel.js';
+    <!-- TavriaV -->
+    <script type="module">
+        import { tavriavExportToExcel } from './tavriav.js/tavriavExportToExcel.js';
+        import { tavriavAmountOfDiscountExportToExcel } from './tavriav.js/tavriavAmountOfDiscountExportToExcel.js';
+        import { tavriavPriceAndWeightExportToExcel } from './tavriav.js/tavriavPriceAndWeightExportToExcel.js';
+        document.getElementById('exportButton').addEventListener('click', tavriavExportToExcel);
+        document.getElementById('exportButton').addEventListener('click', tavriavAmountOfDiscountExportToExcel);
+        document.getElementById('exportButton').addEventListener('click', tavriavPriceAndWeightExportToExcel);
+    </script>
 
-         import { rukavichkaExportToExcel } from './rukavichka.js/rukavichkaExportToExcel.js';
-         import { rukavichkaAmountOfDiscountExportToExcel } from './rukavichka.js/rukavichkaAmountOfDiscountExportToExcel.js';
-         import { rukavichkaPriceAndWeightExportToExcel } from './rukavichka.js/rukavichkaPriceAndWeightExportToExcel.js';
-
-
-
-         document.getElementById('exportButton').addEventListener('click', silpoExportToExcel);
-         document.getElementById('exportButton').addEventListener('click', silpoAmountOfDiscountExportToExcel);
-         document.getElementById('exportButton').addEventListener('click', silpoPriceAndWeightExportToExcel);
-
-         document.getElementById('exportButton').addEventListener('click', novusExportToExcel);
-         document.getElementById('exportButton').addEventListener('click', novusAmountOfDiscountExportToExcel);
-         document.getElementById('exportButton').addEventListener('click', novusPriceAndWeightExportToExcel);
-
-         document.getElementById('exportButton').addEventListener('click', varusExportToExcel);
-         document.getElementById('exportButton').addEventListener('click', varusAmountOfDiscountExportToExcel);
-         document.getElementById('exportButton').addEventListener('click', varusPriceAndWeightExportToExcel);
-
-         document.getElementById('exportButton').addEventListener('click', tavriavExportToExcel);
-         document.getElementById('exportButton').addEventListener('click', tavriavAmountOfDiscountExportToExcel);
-         document.getElementById('exportButton').addEventListener('click', tavriavPriceAndWeightExportToExcel);
-
-         document.getElementById('exportButton').addEventListener('click', rukavichkaExportToExcel);
-         document.getElementById('exportButton').addEventListener('click', rukavichkaAmountOfDiscountExportToExcel);
-         document.getElementById('exportButton').addEventListener('click', rukavichkaPriceAndWeightExportToExcel);
+    <!-- Rukavichka -->
+    <script type="module">
+        import { rukavichkaExportToExcel } from './rukavichka.js/rukavichkaExportToExcel.js';
+        import { rukavichkaAmountOfDiscountExportToExcel } from './rukavichka.js/rukavichkaAmountOfDiscountExportToExcel.js';
+        import { rukavichkaPriceAndWeightExportToExcel } from './rukavichka.js/rukavichkaPriceAndWeightExportToExcel.js';
+        document.getElementById('exportButton').addEventListener('click', rukavichkaExportToExcel);
+        document.getElementById('exportButton').addEventListener('click', rukavichkaAmountOfDiscountExportToExcel);
+        document.getElementById('exportButton').addEventListener('click', rukavichkaPriceAndWeightExportToExcel);
     </script>
 
 
