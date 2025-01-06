@@ -30,13 +30,13 @@ function zakazuaNovusExportToExcel() {
 
                     filteredProducts.forEach((productCard) => {
                         const productNameElements = productCard.querySelectorAll('.ProductTile__title'); 
-                        const priceElement = productCard.querySelector('.jsx-12bf1bb778c37a8c > span.Price__value_caption');
+                        const priceElement = productCard.querySelector('.jsx-cdc81c93bd075911 > span.Price__value_caption');
                         const weightElement = productCard.querySelector('.ProductTile__weight');    
                 
                         // Проверяем наличие скидки
-                        const specialPriceElement = productCard.querySelector('.jsx-12bf1bb778c37a8c > span.Price__value_discount');  
+                        const specialPriceElement = productCard.querySelector('.jsx-cdc81c93bd075911 > span.Price__value_discount');  
                         const salePriceElement = productCard.querySelector('.ProductTile__oldPrice > span.Price__value_minor');     
-                        const discountPercentageElement = productCard.querySelector('.Badge_straightLeft > span.Badge__text');
+                        const discountPercentageElement = productCard.querySelector('.Badge_discount.Badge_straightLeft > span.Badge__text');
                 
                         console.log("productNameElements:", productNameElements);        
                         console.log("priceElement:", priceElement);
