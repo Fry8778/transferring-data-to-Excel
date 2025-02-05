@@ -80,15 +80,27 @@ function varusExportToExcel() {
         }
     });
 
-    if (data.length <= 1) {
-        alert("На странице нет данных для экспорта в Excel.");
-        return;
-    }
+    // if (data.length <= 1) {
+    //     alert("На странице нет данных для экспорта в Excel.");
+    //     return;
+    // }
 
-    const wb = XLSX.utils.book_new();
-    const ws = XLSX.utils.aoa_to_sheet(data);
-    XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
-    XLSX.writeFile(wb, "data.xlsx");
+    // const wb = XLSX.utils.book_new();
+    // const ws = XLSX.utils.aoa_to_sheet(data);
+    // XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+    // XLSX.writeFile(wb, "data.xlsx");
+
+    if (data.length > 1) {
+        // Сортуємо масив, виключаючи заголовок
+        const sortedData = [data[0], ...data.slice(1).sort((a, b) => a[0].localeCompare(b[0], ['en', 'uk']))];
+
+        const wb = XLSX.utils.book_new();
+        const ws = XLSX.utils.aoa_to_sheet(sortedData);
+        XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+        XLSX.writeFile(wb, "varus_kava.xlsx");
+    } else {
+        alert("На сторінці немає даних для експорту в Excel.");
+    }
 }
 
 export { varusExportToExcel };
