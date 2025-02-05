@@ -17,11 +17,11 @@ function allKavaTavriavExportToExcel() {
                     productName.includes('кава натуральна смажена мелена'); 
     });
 
-    const data = [[ 'Название товара',            
-                    'Цена товара(текущая цена)',      
-                    'Цена товара с учетом скидки(текущая цена)',
-                    'Старая цена товара(цена без скидки)',
-                    'Скидка']];
+    const data = [[ 'Назва товару',            
+                    'Ціна товару (грн)',      
+                    'Ціна товару з урахуванням знижки (грн)',
+                    'Стара ціна товару (грн)',
+                    'Відсоток знижки (%)']];
 
     filteredProducts.forEach((productCard) => {
         const productNameElements = productCard.querySelectorAll('.prod__name'); 
