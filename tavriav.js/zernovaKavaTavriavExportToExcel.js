@@ -1,20 +1,14 @@
-function newTavriavExportToExcel() { 
+function zernovaKavaTavriavExportToExcel() { 
     // Фильтрация товаров по наличию слова "кава" в тексте ссылки
     const productCards = document.querySelectorAll('.general__content');
     // console.log("productCards:", productCards);
     const filteredProducts = Array.from(productCards).filter(productCard => {
         const productNameElement = productCard.querySelector('.prod__name');           
         const productName = productNameElement ? productNameElement.innerText.toLowerCase() : ''; // Проверка существования элемента
-            return  productName.includes('кава') ||           
-                    productName.includes('кава мелена')  ||
-                    productName.includes('кава мел')  ||
-                    productName.includes('кава зернова') ||
-                    productName.includes('набір кави') ||                    
-                    productName.includes('напій кавовий') ||
-                    productName.includes('кава натуральна') ||
-                    productName.includes('натуральна смажена в зернах') ||
-                    productName.includes('натуральна смажена мелена') ||
-                    productName.includes('кава натуральна смажена мелена'); 
+            return  productName.includes('кава зернова') ||
+                    productName.includes('зерно') ||                    
+                    productName.includes('зерн.') ||
+                    productName.includes('ваг.'); 
     });
 
     const data = [[ 'Название товара',            
@@ -73,15 +67,27 @@ function newTavriavExportToExcel() {
         }
     });
 
-    if (data.length <= 1) {
-        alert("На странице нет данных для экспорта в Excel.");
-        return;
-    }
+    // if (data.length <= 1) {
+    //     alert("На странице нет данных для экспорта в Excel.");
+    //     return;
+    // }
 
-    const wb = XLSX.utils.book_new();
-    const ws = XLSX.utils.aoa_to_sheet(data);
-    XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
-    XLSX.writeFile(wb, "data.xlsx");
+    // const wb = XLSX.utils.book_new();
+    // const ws = XLSX.utils.aoa_to_sheet(data);
+    // XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+    // XLSX.writeFile(wb, "data.xlsx");
+
+    if (data.length > 1) {
+        // Сортуємо масив, виключаючи заголовок
+        const sortedData = [data[0], ...data.slice(1).sort((a, b) => a[0].localeCompare(b[0], ['en', 'uk']))];
+
+        const wb = XLSX.utils.book_new();
+        const ws = XLSX.utils.aoa_to_sheet(sortedData);
+        XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+        XLSX.writeFile(wb, "kava_zernova.xlsx");
+    } else {
+        alert("На сторінці немає даних для експорту в Excel.");
+}
 }
 
-export { newTavriavExportToExcel };
+export { zernovaKavaTavriavExportToExcel };

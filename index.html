@@ -12,8 +12,6 @@
 
 
 
-
-
   <button id="exportButton">Выгрузить в Excel</button>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
@@ -56,12 +54,18 @@
   <!-- TavriaV -->
 
   <!-- <script type="module">
-    import { tavriavExportToExcel } from './tavriav.js/tavriavExportToExcel.js';
-    import { newTavriavExportToExcel } from './tavriav.js/newTavriavExportToExcel.js';
-    import { tavriavAmountOfDiscountExportToExcel } from './tavriav.js/tavriavAmountOfDiscountExportToExcel.js';
-    import { tavriavPriceAndWeightExportToExcel } from './tavriav.js/tavriavPriceAndWeightExportToExcel.js';
+    import { allKavaTavriavExportToExcel } from './tavriav.js/allKavaTavriavExportToExcel.js';
+    import { melenaKavaTavriavExportToExcel } from './tavriav.js/melenaKavaTavriavExportToExcel.js';
+    import { zernovaKavaTavriavExportToExcel } from './tavriav.js/zernovaKavaTavriavExportToExcel.js';    
+    document.getElementById('exportButton').addEventListener('click', allKavaTavriavExportToExcel);
+    document.getElementById('exportButton').addEventListener('click', melenaKavaTavriavExportToExcel);
+    document.getElementById('exportButton').addEventListener('click', zernovaKavaTavriavExportToExcel);
+    
+
+    import { tavriavExportToExcel } from './tavriavOldCode.js/tavriavExportToExcel.js';
+    import { tavriavAmountOfDiscountExportToExcel } from './tavriavOldCode.js/tavriavAmountOfDiscountExportToExcel.js';
+    import { tavriavPriceAndWeightExportToExcel } from './tavriavOldCode.js/tavriavPriceAndWeightExportToExcel.js';    
     document.getElementById('exportButton').addEventListener('click', tavriavExportToExcel);
-    document.getElementById('exportButton').addEventListener('click', newTavriavExportToExcel);
     document.getElementById('exportButton').addEventListener('click', tavriavAmountOfDiscountExportToExcel);
     document.getElementById('exportButton').addEventListener('click', tavriavPriceAndWeightExportToExcel);
   </script> -->
