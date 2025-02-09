@@ -40,7 +40,9 @@ async function scrapeProducts() {
 
     const products = await page.evaluate(() => {
         const productCards = document.querySelectorAll('.general__content');
-        const keywords = ['кава', 'кава мелена', 'кава мел', 'кава зернова', 'набір кави', 'напій кавовий', 'кава натуральна', 'натуральна смажена в зернах', 'натуральна смажена мелена', 'кава натуральна смажена мелена'];
+        // const keywords = ['кава', 'кава мелена', 'кава мел', 'кава зернова', 'набір кави', 'напій кавовий', 'кава натуральна', 'натуральна смажена в зернах', 'натуральна смажена мелена', 'кава натуральна смажена мелена'];
+        // const keywords = ['кава зернова', 'зерно', 'зерн.', 'ваг.'];
+        const keywords = ['мелена', 'мел'];
         const data = [];
 
         productCards.forEach((productCard) => {
@@ -69,7 +71,7 @@ async function scrapeProducts() {
     if (products.length > 0) {
         const wb = XLSX.utils.book_new();
         const ws = XLSX.utils.aoa_to_sheet([
-            ['Назва товару', 'Ціна товару (грн)', 'Ціна товару з урахуванням знижки (грн)', 'Стара ціна товару (грн)', 'Відсоток знижки (%)'],
+            ['Назва товару', 'Ціна товару (грн)', 'Ціна товару з урахуванням знижки (грн)', 'Стара ціна товару (грн)', 'Знижка (%)'],
             ...products
         ]);
         XLSX.utils.book_append_sheet(wb, ws, 'Товари');
