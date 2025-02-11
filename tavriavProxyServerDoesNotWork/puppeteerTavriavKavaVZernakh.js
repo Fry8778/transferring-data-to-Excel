@@ -23,7 +23,7 @@ async function scrapeProducts() {
 
         while (unchangedCount < 3) {
             await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-            await delay(2000);
+            await delay(5000);
             let newHeight = await page.evaluate(() => document.body.scrollHeight);
 
             if (newHeight === previousHeight) {
@@ -40,27 +40,41 @@ async function scrapeProducts() {
 
     const products = await page.evaluate(() => {
         const productCards = document.querySelectorAll('.general__content');
-        // const keywords = ['кава', 'кава мелена', 'кава мел', 'кава зернова', 'набір кави', 'напій кавовий', 'кава натуральна', 'натуральна смажена в зернах', 'натуральна смажена мелена', 'кава натуральна смажена мелена'];
-        // const keywords = ['кава зернова', 'зерно', 'зерн.', 'ваг.'];
-        const keywords = ['мелена', 'мел'];
+        const keywords = ['кава зернова', 'зерно', 'зерн.', 'ваг.'];       
         const data = [];
+        const uniqueProducts = new Set();
 
         productCards.forEach((productCard) => {
-            const productNameElements = productCard.querySelectorAll('.prod__name');
-            const productName = Array.from(productNameElements).map(el => el.innerText.trim()).join(' ');
+            const productNameElement = productCard.querySelector('.prod__name');
+            if (!productNameElement) return;
+
+            const productName = productNameElement.innerText.trim();
             if (!keywords.some(keyword => productName.toLowerCase().includes(keyword))) return;
+
+            // const outOfStock = productCard.querySelector('.ant-btn, .css-zg0ahe, .ant-btn-disabled, .ant-btn-block, .add__remove__product, .type-disabled') !== null;
+            // const outOfStock = productCard.querySelector('.ant-btn-disabled, .type-disabled') !== null;
+            
+            // const outOfStock = productCard.querySelector('.styles__OutOfStockStyles-sc-v51mmc-1') !== null;
+            // if (outOfStock) {
+            //     console.log(`[ЛОГ] Пропущено (відсутній на складі):`, productName);
+            //     return;
+            // }
 
             const priceElement = productCard.querySelector('.base__price');
             const salePriceElement = productCard.querySelector('.prod-crossed-out__price__old');
             const discountPercentageElement = productCard.querySelector('.prod-crossed-out__price__special-off');
 
-            const hasDiscount = salePriceElement && discountPercentageElement;
             const price = priceElement ? priceElement.innerText.trim() : '';
-            const salePrice = hasDiscount ? salePriceElement.innerText.trim() : '';
-            const discountPercentage = hasDiscount ? discountPercentageElement.innerText.trim() : '';
-            const specialPrice = hasDiscount ? price : '';
+            const salePrice = salePriceElement ? salePriceElement.innerText.trim() : '';
+            const discountPercentage = discountPercentageElement ? discountPercentageElement.innerText.trim() : '';
+            const specialPrice = salePrice ? price : '';
+            const regularPrice = salePrice ? '' : price;
 
-            data.push([productName, hasDiscount ? '' : price, specialPrice, salePrice, discountPercentage]);
+            const productKey = `${productName}-${price}-${salePrice}`;
+            if (uniqueProducts.has(productKey)) return;
+            uniqueProducts.add(productKey);
+
+            data.push([productName, regularPrice, specialPrice, salePrice, discountPercentage]);
         });
 
         return data;
@@ -69,13 +83,14 @@ async function scrapeProducts() {
     console.log('Зібрані товари:', products);
     
     if (products.length > 0) {
+        products.sort((a, b) => a[0].localeCompare(b[0]));
         const wb = XLSX.utils.book_new();
         const ws = XLSX.utils.aoa_to_sheet([
             ['Назва товару', 'Ціна товару (грн)', 'Ціна товару з урахуванням знижки (грн)', 'Стара ціна товару (грн)', 'Знижка (%)'],
             ...products
         ]);
         XLSX.utils.book_append_sheet(wb, ws, 'Товари');
-        XLSX.writeFile(wb, 'scraper_kava_tavriaV_puppeteer6.xlsx');
+        XLSX.writeFile(wb, 'puppeteer_tavriaV_kava_v_zernakh.xlsx');
     }
 
     await browser.close();
