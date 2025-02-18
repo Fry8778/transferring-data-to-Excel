@@ -20,7 +20,12 @@ function fozzyExportToExcel() {
                productName.includes('кава натуральна смажена мелена');
     });
 
-    const data = [['Назва товару', 'Ціна товару(грн)', 'Вага товару(г)', 'Ціна товару з урахуванням знижки(грн)', 'Стара ціна товару(грн)', 'Знижка(грн)']];
+    const data = [[ 'Назва товару',
+                    'Ціна товару(грн)',
+                    'Вага товару(г)',
+                    'Ціна товару з урахуванням знижки(грн)',
+                    'Стара ціна товару(грн)',
+                    'Знижка(грн)']];
 
     filteredProducts.forEach((productCard) => {
         const productNameElements = productCard.querySelectorAll('.h3.product-title');
